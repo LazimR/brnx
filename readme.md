@@ -19,8 +19,8 @@ Esse sistema é uma plataforma completa que integra:
 
 | Componente       | Tecnologias-Chave                  | Repositório                                                |
 |------------------|------------------------------------|------------------------------------------------------------|
-| **Backend**      | Node.js, Express, PostgreSQL       | [MatBloom-API](https://github.com/LazimR/brnx-back)     |
-| **Frontend**     | React, Redux                       | [MatBloom-Front](https://github.com/LazimR/brnx-front) |
+| **Backend**      | Node.js, Express, PostgreSQL       | [brnx-back](https://github.com/LazimR/brnx-back)     |
+| **Frontend**     | React, Redux                       | [brnx-front](https://github.com/LazimR/brnx-front) |
 | **Infra**        | Docker, Docker Compose             |                                                            |
 
 ## 🛠️ Tecnologias Principais
