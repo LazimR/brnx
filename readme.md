@@ -52,8 +52,6 @@ git clone https://github.com/LazimR/brnx-front
 ```
 
 2. Inicie os containers:
-- Crie um docker-compose a partir do docker-compose.example
-
 ```bash
 docker-compose up -d --build
 
