@@ -47,6 +47,8 @@ Esse sistema é uma plataforma completa que integra:
 ```bash
 git clone https://github.com/LazimR/brnx.git
 cd brnx
+git clone https://github.com/LazimR/brnx-back
+git clone https://github.com/LazimR/brnx-front
 ```
 
 2. Inicie os containers:
