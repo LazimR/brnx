@@ -1,5 +1,5 @@
 services:
-  postgres:
+  brnx-db:
     image: postgres:17.5-alpine3.22
     container_name: brnx_postgres
     restart: always
@@ -8,9 +8,51 @@ services:
       POSTGRES_PASSWORD: brnx_password
       POSTGRES_DB: brnx_db
     ports:
-      - "9000:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - brnx-network
+
+  brnx-back:
+    build:
+      context: ./brnx-back
+      dockerfile: Dockerfile
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    container_name: brnx-back
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://brnx_user:brnx_password@brnx-db:5432/brnx_db
+      PORT: 3000
+      NODE_ENV: production
+    depends_on:
+      - brnx-db
+    command: sh -c "whoami && ls -l /app/src/prisma/schema.prisma && yarn prisma:migrate && node dist/server.js"
+    networks:
+      - brnx-network
+
+  brnx-front:
+    build:
+      context: ./brnx-front
+      dockerfile: Dockerfile
+    container_name: brnx-front
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      REACT_APP_API_URL: http://brnx-back:3000
+    depends_on:
+      - brnx-back
+    networks:
+      - brnx-network
+
+networks:
+  brnx-network:
+    driver: bridge
 
 volumes:
   postgres_data:

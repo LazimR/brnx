@@ -57,8 +57,16 @@ docker-compose up -d --build
 
 ```
 
-3. Acesse:
+3. Crie um usuario para acessar o sistema:
+```bash
+curl -X POST http://localhost:3000/users \
+-H "Content-Type: application/json" \
+-d '{"name":"admin","password":"admin123"}'
+```
 
-API: http://localhost:8000/docs
+4. Acesse:
+BD: http://localhost:5432/
 
-Frontend: http://localhost:3001
+Backend: http://localhost:3000/
+
+Frontend: http://localhost:80
